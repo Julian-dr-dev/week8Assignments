@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Form Validation - jQuery Validation Plugin</title>
+    <!-- Include jQuery and the jQuery Validation Plugin -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
+    <style>
+        /* Style the form and error messages */
+        label.error {
+            color: red;
+            font-size: 12px;
+            margin-left: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Form Validation with jQuery Validation Plugin</h1>
+
+    <!-- Form structure -->
+    <form action="processor.php" method="post" id="myForm">
+        <p><label for="name">Name</label><br>
+        <input id="name" name="name" type="text"></p>
+        
+        <p><label for="email">Email</label><br>
+        <input id="email" name="email" type="text"></p>
+        
+        <p><label for="url">Website</label><br>
+        <input id="url" name="url" type="text"></p>
+        
+        <p><label for="comments">Comments</label><br>
+        <textarea id="comments" name="comments" cols="40" rows="10"></textarea></p>
+        
+        <p><input name="send" type="submit" value="Submit"></p>
+    </form>
+
+    <script>
+        // Initialize jQuery validation
+        $(document).ready(function() {
+            $("#myForm").validate({
+                // Define rules for validation
+                rules: {
+                    name: {
+                        required: true,
+                        minlength: 2
+                    },
+                    email: {
+                        required: true,
+                        email: true
+                    },
+                    url: {
+                        required: false,
+                        url: true
+                    },
+                    comments: {
+                        required: true,
+                        minlength: 10
+                    }
+                },
+                // Define error messages
+                messages: {
+                    name: {
+                        required: "Please enter your name",
+                        minlength: "Name must be at least 2 characters long"
+                    },
+                    email: {
+                        required: "Please enter your email",
+                        email: "Please enter a valid email address"
+                    },
+                    url: {
+                        url: "Please enter a valid URL"
+                    },
+                    comments: {
+                        required: "Please enter your comments",
+                        minlength: "Comments must be at least 10 characters long"
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

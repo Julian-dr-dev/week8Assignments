@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>jQuery Validator Plugin Example</title>
+	<!-- Add jQuery and jQuery Validation Plugin from CDN -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
+
+	<style>
+	label.error {
+		color:#D40004;
+		display:block;
+		font-size:14px;
+	}
+	</style>
+</head>
+
+<body>
+
+	<h1>Basic Form Validation - jQuery Validator Plugin (Simple Version)</h1>
+	<form action="processor.php" method="post" id="myForm">
+    
+    	<p><label for="name">Name</label><br>
+		<input id="name" name="name" type="text"></p>
+        
+        <p><label for="email">Email</label><br>
+        <input id="email" name="email" type="email"></p>
+        
+        <p><label for="url">Website</label><br>
+        <input id="url" name="url" type="url"></p>
+        
+        <p><label for="comments">Comments</label><br>
+    	<textarea id="comments" name="comments" cols="40" rows="10"></textarea></p>
+        
+        <p><input id="send"  name="send" type="submit" value="Send"></p>
+    
+    </form>
+	
+	<!-- Run the jQuery Validation Plugin -->
+	<script>
+		$(document).ready(function() {
+			$("#myForm").validate({
+				rules: {
+					name: {
+						required: true,
+						minlength: 2
+					},
+					email: {
+						required: true,
+						email: true
+					},
+					url: {
+						url: true
+					},
+					comments: {
+						required: true,
+						minlength: 10
+					}
+				},
+				messages: {
+					name: {
+						required: "Please enter your name",
+						minlength: "Your name must consist of at least 2 characters"
+					},
+					email: {
+						required: "Please enter your email",
+						email: "Please enter a valid email address"
+					},
+					url: {
+						url: "Please enter a valid URL"
+					},
+					comments: {
+						required: "Please enter a comment",
+						minlength: "Your comment must be at least 10 characters long"
+					}
+				}
+			});
+		});
+	</script>
+</body>
+</html>
